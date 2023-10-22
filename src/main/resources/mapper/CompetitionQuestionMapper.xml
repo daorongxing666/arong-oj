@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.arong.oj.mapper.CompetitionQuestionMapper">
+
+    <resultMap id="BaseResultMap" type="com.arong.oj.entity.domain.CompetitionQuestion">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="competitionId" column="competition_id" jdbcType="BIGINT"/>
+            <result property="questionId" column="question_id" jdbcType="BIGINT"/>
+            <result property="questionScore" column="question_score" jdbcType="BIGINT"/>
+            <result property="questionPassRate" column="question_pass_rate" jdbcType="BIGINT"/>
+            <result property="questionDifficultyScore" column="question_difficulty_score" jdbcType="BIGINT"/>
+            <result property="competitionQuestionNum" column="competition_question_num" jdbcType="BIGINT"/>
+            <result property="createtime" column="createTime" jdbcType="TIMESTAMP"/>
+            <result property="updatetime" column="updateTime" jdbcType="TIMESTAMP"/>
+            <result property="isdelete" column="isDelete" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,competition_id,question_id,
+        question_score,question_pass_rate,question_difficulty_score,
+        competition_question_num,createTime,updateTime,
+        isDelete
+    </sql>
+</mapper>

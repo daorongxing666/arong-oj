@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.arong.oj.mapper.UserMapper">
+
+    <resultMap id="BaseResultMap" type="com.arong.oj.entity.domain.User">
+            <id property="id" column="id" jdbcType="BIGINT"/>
+            <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+            <result property="nickname" column="nickname" jdbcType="VARCHAR"/>
+            <result property="password" column="password" jdbcType="VARCHAR"/>
+            <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
+            <result property="followCount" column="follow_count" jdbcType="INTEGER"/>
+            <result property="followedCount" column="followed_count" jdbcType="INTEGER"/>
+            <result property="dailyCount" column="daily_count" jdbcType="INTEGER"/>
+            <result property="rank" column="rank" jdbcType="INTEGER"/>
+            <result property="email" column="email" jdbcType="VARCHAR"/>
+            <result property="githubAddress" column="github_address" jdbcType="VARCHAR"/>
+            <result property="createtime" column="createTime" jdbcType="TIMESTAMP"/>
+            <result property="updatetime" column="updateTime" jdbcType="TIMESTAMP"/>
+            <result property="isdelete" column="isDelete" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,user_name,nickname,
+        password,avatar,follow_count,
+        followed_count,daily_count,rank,
+        email,githubAddress,createTime,
+        updateTime,isDelete
+    </sql>
+</mapper>
