@@ -41,7 +41,7 @@ public class Result<T>  {
      * @param data
      * @return
      */
-    public Result<T> succeed(T data) {
+    public static <T> Result<T> succeed(T data) {
         return new Result<T>(data);
     }
 
@@ -51,7 +51,7 @@ public class Result<T>  {
      * @param msg
      * @return
      */
-    public Result fail(Integer code, String msg) {
+    public static <T> Result fail(Integer code, String msg) {
         return new Result(code, msg);
     }
 
@@ -60,7 +60,7 @@ public class Result<T>  {
      * @param msg
      * @return
      */
-    public Result fail(String msg) {
+    public static <T> Result fail(String msg) {
         return new Result(Code.FAIL.getCodeNum(), msg);
     }
 }

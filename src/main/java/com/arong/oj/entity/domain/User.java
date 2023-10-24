@@ -58,7 +58,7 @@ public class User implements Serializable {
     /**
      * 排名分数
      */
-    private Integer rank;
+    private Integer rankScore;
 
     /**
      * 邮箱

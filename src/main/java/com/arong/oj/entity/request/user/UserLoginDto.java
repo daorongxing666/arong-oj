@@ -9,6 +9,11 @@ import lombok.Data;
 public class UserLoginDto {
 
     /**
+     * 时间
+     */
+    private String time;
+
+    /**
      * 账号
      */
     private String account;

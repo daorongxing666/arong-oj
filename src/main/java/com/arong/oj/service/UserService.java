@@ -6,6 +6,7 @@ import com.arong.oj.entity.request.user.UserLoginDto;
 import com.arong.oj.entity.request.user.UserRegisterDto;
 import com.arong.oj.entity.request.user.UserSearchDto;
 import com.arong.oj.entity.request.user.UserUpdateDto;
+import com.arong.oj.entity.response.UserResponse;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
@@ -21,13 +22,13 @@ public interface UserService extends IService<User> {
      * 用户注册
      * @param userRegisterDto 用户注册请求类
      */
-    public void register(UserRegisterDto userRegisterDto);
+    public UserResponse register(UserRegisterDto userRegisterDto);
 
     /**
      * 用户登录
      * @param userLoginDto 用户登录请求类
      */
-    public void login(UserLoginDto userLoginDto);
+    public UserResponse login(UserLoginDto userLoginDto);
 
     /**
      * 用户注销

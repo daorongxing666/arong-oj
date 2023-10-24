@@ -9,7 +9,15 @@ public enum Code {
     /**
      * 失败总称
      */
-    FAIL(400, "失败");
+    FAIL(400, "失败"),
+
+    SYSTEM_ERROR(40000, "系统服务错误"),
+
+    PARAM_ERROR(40001, "参数错误"),
+
+    WRONG_INPUT(40002, "错误输入值"),
+
+    EMPTY_INPUT(40003, "没有输入值");
 
 
 
@@ -24,5 +32,9 @@ public enum Code {
 
     public Integer getCodeNum() {
         return codeNum;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }

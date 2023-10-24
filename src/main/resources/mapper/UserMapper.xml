@@ -13,7 +13,7 @@
             <result property="followCount" column="follow_count" jdbcType="INTEGER"/>
             <result property="followedCount" column="followed_count" jdbcType="INTEGER"/>
             <result property="dailyCount" column="daily_count" jdbcType="INTEGER"/>
-            <result property="rank" column="rank" jdbcType="INTEGER"/>
+            <result property="rankScore" column="rank_score" jdbcType="INTEGER"/>
             <result property="email" column="email" jdbcType="VARCHAR"/>
             <result property="githubAddress" column="github_address" jdbcType="VARCHAR"/>
             <result property="createtime" column="createTime" jdbcType="TIMESTAMP"/>
@@ -24,7 +24,7 @@
     <sql id="Base_Column_List">
         id,user_name,nickname,
         password,avatar,follow_count,
-        followed_count,daily_count,rank,
+        followed_count,daily_count,rank_score,
         email,githubAddress,createTime,
         updateTime,isDelete
     </sql>

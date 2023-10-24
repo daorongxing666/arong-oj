@@ -22,4 +22,13 @@ public class UserRegisterDto {
      * 确认密码
      */
     private String checkPassword;
+
+    /**
+     * 用户头像
+     */
+    private String Avatar;
+
+    private String githubAddress;
+
+    private String email;
 }
