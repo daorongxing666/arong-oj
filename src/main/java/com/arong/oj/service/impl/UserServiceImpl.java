@@ -3,6 +3,8 @@ import java.util.Date;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.crypto.SecureUtil;
+import cn.hutool.json.JSON;
+import cn.hutool.json.JSONUtil;
 import com.arong.oj.common.Code;
 import com.arong.oj.common.DeleteDto;
 import com.arong.oj.common.Result;
@@ -15,12 +17,15 @@ import com.arong.oj.error.BusinessException;
 import com.arong.oj.error.UserException;
 import com.arong.oj.service.UserService;
 import com.arong.oj.util.JWTUtil;
+import com.arong.oj.util.PageUtil;
 import com.arong.oj.util.RedisUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.arong.oj.entity.domain.User;
 import com.arong.oj.mapper.UserMapper;
 import com.google.code.kaptcha.Constants;
+import org.apache.poi.ss.formula.functions.T;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -116,29 +121,43 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
             throw new UserException(PARAM_ERROR.getCodeNum(),"登录失效");
         }
         UserResponse userResponse = BeanUtil.copyProperties(user, UserResponse.class);
-        stringRedisTemplate.opsForValue().set(token, user.getId().toString(), 1, TimeUnit.DAYS);
         userResponse.setToken(token);
+        stringRedisTemplate.opsForValue().set(user.getId().toString(), String.valueOf(userResponse), 1, TimeUnit.DAYS);
         return userResponse;
     }
 
     @Override
     public void logout(DeleteDto deleteDto) {
-
+        stringRedisTemplate.delete(deleteDto.getId().toString());
     }
 
     @Override
-    public List<User> getUserList(UserSearchDto userSearchDto) {
-        return null;
+    public Page<User> getUserList(UserSearchDto userSearchDto) {
+        String userAccount = userSearchDto.getUserAccount();
+        String nickName = userSearchDto.getNickName();
+        QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
+        userQueryWrapper.lambda().eq(userAccount != null, User::getUserName, userAccount)
+                .eq(nickName != null, User::getNickname, nickName);
+        List<User> list = this.list(userQueryWrapper);
+        Page<User> userPage = PageUtil.getPageList(list, userSearchDto.getCurrentPage(), userSearchDto.getPageSize());
+        return userPage;
     }
 
     @Override
     public boolean updateUser(UserUpdateDto userUpdateDto) {
-        return false;
+        User user = BeanUtil.copyProperties(userUpdateDto, User.class);
+        return updateById(user);
     }
 
     @Override
-    public boolean deleteUser(Long userId) {
-        return false;
+    public boolean deleteUser(DeleteDto deleteDto) {
+        return this.removeById(deleteDto.getId());
+    }
+
+    @Override
+    public UserResponse getLoginUser(Long userId) {
+        String userResponseString = stringRedisTemplate.opsForValue().get(userId.toString());
+        return JSONUtil.toBean(userResponseString, UserResponse.class);
     }
 }
 

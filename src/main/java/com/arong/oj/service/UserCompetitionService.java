@@ -1,10 +1,12 @@
 package com.arong.oj.service;
 
+import com.arong.oj.common.DeleteDto;
 import com.arong.oj.entity.domain.UserCompetition;
 import com.arong.oj.entity.request.userCompetition.UserCompetitionAddDto;
 import com.arong.oj.entity.request.userCompetition.UserCompetitionEditDto;
 import com.arong.oj.entity.request.userCompetition.UserCompetitionQueryDto;
 import com.arong.oj.entity.response.UserCompetitionResponse;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
@@ -27,7 +29,7 @@ public interface UserCompetitionService extends IService<UserCompetition> {
      * @param userCompetitionId 用户竞赛id
      * @return 是否删除成功
      */
-    public boolean deleteUserCompetition(Long userCompetitionId);
+    public boolean deleteUserCompetition(DeleteDto deleteDto);
 
     /**
      * 用户竞赛编辑
@@ -41,7 +43,7 @@ public interface UserCompetitionService extends IService<UserCompetition> {
      * @param userCompetitionQueryDto 用户竞赛列表请求类
      * @return 用户竞赛列表
      */
-    public List<UserCompetitionResponse> getUserCompetitionList(UserCompetitionQueryDto userCompetitionQueryDto);
+    public Page<UserCompetitionResponse> getUserCompetitionList(UserCompetitionQueryDto userCompetitionQueryDto);
 
     /**
      * 查询单个用户竞赛

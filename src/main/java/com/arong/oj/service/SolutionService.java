@@ -1,10 +1,12 @@
 package com.arong.oj.service;
 
+import com.arong.oj.common.DeleteDto;
 import com.arong.oj.entity.domain.Solution;
 import com.arong.oj.entity.request.solution.SolutionAddDto;
 import com.arong.oj.entity.request.solution.SolutionEditDto;
 import com.arong.oj.entity.request.solution.SolutionQueryDto;
 import com.arong.oj.entity.response.SolutionResponse;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
@@ -27,7 +29,7 @@ public interface SolutionService extends IService<Solution> {
      * @param solutionId 题解id
      * @return 是否删除成功
      */
-    public boolean deleteSolution(Long solutionId);
+    public boolean deleteSolution(DeleteDto deleteDto);
 
     /**
      * 题解编辑
@@ -41,7 +43,7 @@ public interface SolutionService extends IService<Solution> {
      * @param solutionQueryDto 题解列表请求类
      * @return 题解列表
      */
-    public List<SolutionResponse> getSolutionList(SolutionQueryDto solutionQueryDto);
+    public Page<SolutionResponse> getSolutionList(SolutionQueryDto solutionQueryDto);
 
     /**
      * 查询单个题解

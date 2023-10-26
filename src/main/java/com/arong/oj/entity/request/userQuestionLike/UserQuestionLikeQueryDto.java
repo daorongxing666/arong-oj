@@ -1,5 +1,6 @@
 package com.arong.oj.entity.request.userQuestionLike;
 
+import com.arong.oj.common.Page;
 import lombok.Data;
 
 import java.util.Date;
@@ -9,7 +10,7 @@ import java.util.Date;
  * 用户题目收藏响应类
  */
 @Data
-public class UserQuestionLikeQueryDto {
+public class UserQuestionLikeQueryDto extends Page {
     /**
      * 主键
      */

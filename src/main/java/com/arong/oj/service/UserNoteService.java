@@ -1,10 +1,12 @@
 package com.arong.oj.service;
 
+import com.arong.oj.common.DeleteDto;
 import com.arong.oj.entity.domain.UserNote;
 import com.arong.oj.entity.request.userNote.UserNoteAddDto;
 import com.arong.oj.entity.request.userNote.UserNoteEditDto;
 import com.arong.oj.entity.request.userNote.UserNoteQueryDto;
 import com.arong.oj.entity.response.UserNoteResponse;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
@@ -27,7 +29,7 @@ public interface UserNoteService extends IService<UserNote> {
      * @param userNoteId 用户笔记id
      * @return 是否删除成功
      */
-    public boolean deleteUserNote(Long userNoteId);
+    public boolean deleteUserNote(DeleteDto deleteDto);
 
     /**
      * 用户笔记编辑
@@ -41,7 +43,7 @@ public interface UserNoteService extends IService<UserNote> {
      * @param userNoteQueryDto 用户笔记列表请求类
      * @return 用户笔记列表
      */
-    public List<UserNoteResponse> getUserNoteList(UserNoteQueryDto userNoteQueryDto);
+    public Page<UserNoteResponse> getUserNoteList(UserNoteQueryDto userNoteQueryDto);
 
     /**
      * 查询单个用户笔记

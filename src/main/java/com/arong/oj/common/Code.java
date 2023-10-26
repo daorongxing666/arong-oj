@@ -13,6 +13,8 @@ public enum Code {
 
     SYSTEM_ERROR(40000, "系统服务错误"),
 
+    SQL_ERROR(40010, "数据库错误"),
+
     PARAM_ERROR(40001, "参数错误"),
 
     WRONG_INPUT(40002, "错误输入值"),

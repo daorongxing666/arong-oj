@@ -1,5 +1,6 @@
 package com.arong.oj.entity.request.userCompetition;
 
+import com.arong.oj.common.Page;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -9,7 +10,7 @@ import java.io.Serializable;
  * 用户比赛响应类
  */
 @Data
-public class UserCompetitionQueryDto implements Serializable {
+public class UserCompetitionQueryDto extends Page {
     /**
      * 主键
      */

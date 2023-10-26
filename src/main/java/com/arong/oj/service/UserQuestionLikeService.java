@@ -1,9 +1,11 @@
 package com.arong.oj.service;
 
+import com.arong.oj.common.DeleteDto;
 import com.arong.oj.entity.domain.UserQuestionLike;
 import com.arong.oj.entity.request.userQuestionLike.UserQuestionLikeAddDto;
 import com.arong.oj.entity.request.userQuestionLike.UserQuestionLikeQueryDto;
 import com.arong.oj.entity.response.UserQuestionLikeResponse;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
@@ -19,20 +21,20 @@ public interface UserQuestionLikeService extends IService<UserQuestionLike> {
      * @param userQuestionLikeAddDto 用户题目收藏发布请求类
      * @return 用户题目收藏id
      */
-    public Long publishUserQuestionLike(UserQuestionLikeAddDto userQuestionLikeAddDto);
+    public Long addUserQuestionLike(UserQuestionLikeAddDto userQuestionLikeAddDto);
 
     /**
      * 删除用户题目收藏
      * @param userQuestionLikeId 用户题目收藏id
      * @return 是否删除成功
      */
-    public boolean deleteUserQuestionLike(Long userQuestionLikeId);
+    public boolean deleteUserQuestionLike(DeleteDto deleteDto);
     
     /**
      * 查询用户题目收藏列表
      * @param userQuestionLikeQueryDto 用户题目收藏列表请求类
      * @return 用户题目收藏列表
      */
-    public List<UserQuestionLikeResponse> getUserQuestionLikeList(UserQuestionLikeQueryDto userQuestionLikeQueryDto);
+    public Page<UserQuestionLikeResponse> getUserQuestionLikeList(UserQuestionLikeQueryDto userQuestionLikeQueryDto);
     
 }

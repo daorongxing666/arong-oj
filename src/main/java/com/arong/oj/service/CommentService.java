@@ -1,10 +1,12 @@
 package com.arong.oj.service;
 
+import com.arong.oj.common.DeleteDto;
 import com.arong.oj.entity.domain.Comment;
 import com.arong.oj.entity.request.comment.CommentAddDto;
 import com.arong.oj.entity.request.comment.CommentEditDto;
 import com.arong.oj.entity.request.comment.CommentQueryDto;
 import com.arong.oj.entity.response.CommentResponse;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
@@ -27,7 +29,7 @@ public interface CommentService extends IService<Comment> {
      * @param commentId 评论id
      * @return 是否删除成功
      */
-    public boolean deleteComment(Long commentId);
+    public boolean deleteComment(DeleteDto deleteDto);
 
     /**
      * 评论编辑
@@ -41,7 +43,7 @@ public interface CommentService extends IService<Comment> {
      * @param commentQueryDto 评论列表请求类
      * @return 评论列表
      */
-    public List<CommentResponse> getCommentList(CommentQueryDto commentQueryDto);
+    public Page<CommentResponse> getCommentList(CommentQueryDto commentQueryDto);
 
     /**
      * 查询单个评论

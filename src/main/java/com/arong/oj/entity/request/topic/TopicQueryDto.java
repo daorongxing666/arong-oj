@@ -1,5 +1,6 @@
 package com.arong.oj.entity.request.topic;
 
+import com.arong.oj.common.Page;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -12,7 +13,7 @@ import java.util.Date;
  * 帖子查询请求类
  */
 @Data
-public class TopicQueryDto implements Serializable {
+public class TopicQueryDto extends Page {
     /**
      * 主键
      */

@@ -1,10 +1,12 @@
 package com.arong.oj.service;
 
+import com.arong.oj.common.DeleteDto;
 import com.arong.oj.entity.domain.QuestionTag;
 import com.arong.oj.entity.request.questionTag.QuestionTagAddDto;
 import com.arong.oj.entity.request.questionTag.QuestionTagEditDto;
 import com.arong.oj.entity.request.questionTag.QuestionTagQueryDto;
 import com.arong.oj.entity.response.QuestionTagResponse;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
@@ -27,7 +29,7 @@ public interface QuestionTagService extends IService<QuestionTag> {
      * @param questionTagId 题目标签id
      * @return 是否删除成功
      */
-    public boolean deleteQuestionTag(Long questionTagId);
+    public boolean deleteQuestionTag(DeleteDto deleteDto);
 
     /**
      * 题目标签编辑
@@ -41,7 +43,7 @@ public interface QuestionTagService extends IService<QuestionTag> {
      * @param questionTagQueryDto 题目标签列表请求类
      * @return 题目标签列表
      */
-    public List<QuestionTagResponse> getQuestionTagList(QuestionTagQueryDto questionTagQueryDto);
+    public Page<QuestionTagResponse> getQuestionTagList(QuestionTagQueryDto questionTagQueryDto);
 
     /**
      * 查询单个题目标签

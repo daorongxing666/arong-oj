@@ -1,10 +1,12 @@
 package com.arong.oj.service;
 
+import com.arong.oj.common.DeleteDto;
 import com.arong.oj.entity.domain.Post;
 import com.arong.oj.entity.request.post.PostEditDto;
 import com.arong.oj.entity.request.post.PostPublishDto;
 import com.arong.oj.entity.request.post.PostQueryDto;
 import com.arong.oj.entity.response.PostResponse;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
@@ -28,7 +30,7 @@ public interface PostService extends IService<Post> {
      * @param postId 帖子id
      * @return 是否删除成功
      */
-    public boolean deletePost(Long postId);
+    public boolean deletePost(DeleteDto deleteDto);
 
     /**
      * 帖子编辑
@@ -42,7 +44,7 @@ public interface PostService extends IService<Post> {
      * @param postQueryDto 帖子列表请求类
      * @return 帖子列表
      */
-    public List<PostResponse> getPostList(PostQueryDto postQueryDto);
+    public Page<PostResponse> getPostList(PostQueryDto postQueryDto);
 
     /**
      * 查询单个帖子

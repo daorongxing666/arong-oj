@@ -7,6 +7,7 @@ import com.arong.oj.entity.request.user.UserRegisterDto;
 import com.arong.oj.entity.request.user.UserSearchDto;
 import com.arong.oj.entity.request.user.UserUpdateDto;
 import com.arong.oj.entity.response.UserResponse;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
@@ -41,7 +42,7 @@ public interface UserService extends IService<User> {
      * @param userSearchDto 用户请求封装类
      * @return
      */
-    public List<User> getUserList(UserSearchDto userSearchDto);
+    public Page<User> getUserList(UserSearchDto userSearchDto);
 
     /**
      * 用户个人信息更新
@@ -55,5 +56,12 @@ public interface UserService extends IService<User> {
      * @param userId 用户id
      * @return
      */
-    public boolean deleteUser(Long userId);
+    public boolean deleteUser(DeleteDto deleteDto);
+
+    /**
+     * 获取当前登录用户
+     * @param userId
+     * @return
+     */
+    public UserResponse getLoginUser(Long userId);
 }

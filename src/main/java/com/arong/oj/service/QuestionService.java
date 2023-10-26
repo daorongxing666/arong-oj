@@ -7,6 +7,7 @@ import com.arong.oj.entity.request.question.QuestionEditDto;
 import com.arong.oj.entity.request.question.QuestionQueryDto;
 import com.arong.oj.entity.response.question.QuestionDetailResponse;
 import com.arong.oj.entity.response.question.QuestionResponse;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.apache.ibatis.annotations.Delete;
 
@@ -45,7 +46,7 @@ public interface QuestionService extends IService<Question> {
      * @param questionQueryDto 题目查询请求类
      * @return
      */
-    public List<QuestionResponse> getQuestionList(QuestionQueryDto questionQueryDto);
+    public Page<QuestionResponse> getQuestionList(QuestionQueryDto questionQueryDto);
 
     /**
      * 题目查询

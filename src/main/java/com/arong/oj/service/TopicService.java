@@ -6,6 +6,7 @@ import com.arong.oj.entity.request.topic.TopicEditDto;
 import com.arong.oj.entity.request.topic.TopicPublishDto;
 import com.arong.oj.entity.request.topic.TopicQueryDto;
 import com.arong.oj.entity.response.TopicResponse;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
@@ -42,7 +43,7 @@ public interface TopicService extends IService<Topic> {
      * @param topicQueryDto 话题列表请求类
      * @return
      */
-    public List<TopicResponse> getTopicList(TopicQueryDto topicQueryDto);
+    public Page<TopicResponse> getTopicList(TopicQueryDto topicQueryDto);
 
     /**
      * 查询具体话题
