@@ -29,7 +29,7 @@ public interface TopicService extends IService<Topic> {
      * 编辑话题
      * @param topicEditDto 话题编辑请求类
      */
-    public void editTopic(TopicEditDto topicEditDto);
+    public boolean editTopic(TopicEditDto topicEditDto);
 
     /**
      * 删除话题

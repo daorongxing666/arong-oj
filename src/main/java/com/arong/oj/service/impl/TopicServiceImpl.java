@@ -43,13 +43,13 @@ public class TopicServiceImpl extends ServiceImpl<TopicMapper, Topic>
     }
 
     @Override
-    public void editTopic(TopicEditDto topicEditDto) {
+    public boolean editTopic(TopicEditDto topicEditDto) {
         Topic topic = BeanUtil.copyProperties(topicEditDto, Topic.class);
         boolean save = updateById(topic);
         if(!save) {
             throw new BusinessException(SQL_ERROR);
         }
-        return ;
+        return save;
     }
 
     @Override
