@@ -17,6 +17,7 @@ public class UserCompetitionDescriptionServiceImpl extends ServiceImpl<UserCompe
 
     @Override
     public void description() {
+        UserCompetitionDescription userCompetitionDescription = new UserCompetitionDescription();
 
     }
 

@@ -19,6 +19,7 @@ import com.arong.oj.service.UserService;
 import com.arong.oj.util.JWTUtil;
 import com.arong.oj.util.PageUtil;
 import com.arong.oj.util.RedisUtil;
+import com.arong.oj.util.UserThreadLocal;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -122,7 +123,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         }
         UserResponse userResponse = BeanUtil.copyProperties(user, UserResponse.class);
         userResponse.setToken(token);
-        stringRedisTemplate.opsForValue().set(user.getId().toString(), String.valueOf(userResponse), 1, TimeUnit.DAYS);
+        stringRedisTemplate.opsForValue().set(token, String.valueOf(userResponse), 1, TimeUnit.DAYS);
+        UserThreadLocal.put(userResponse);
         return userResponse;
     }
 

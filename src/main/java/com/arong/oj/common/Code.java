@@ -12,6 +12,8 @@ public enum Code {
     FAIL(400, "失败"),
 
     SYSTEM_ERROR(40000, "系统服务错误"),
+    AUTH_ERROR(40001, "没有相应权限"),
+    UN_LOGIN_ERROR(40002, "没有登录"),
 
     SQL_ERROR(40010, "数据库错误"),
 

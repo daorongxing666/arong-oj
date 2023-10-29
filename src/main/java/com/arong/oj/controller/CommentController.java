@@ -23,7 +23,7 @@ public class CommentController {
     CommentService commentService;
 
     /**
-     * 获取帖子列表
+     * 获取评论列表
      * @param commentQueryDto
      * @return
      * @throws IOException
@@ -35,7 +35,7 @@ public class CommentController {
     }
 
     /**
-     * 新增帖子
+     * 新增评论
      * @param commentAddDto
      * @return
      */
@@ -47,7 +47,7 @@ public class CommentController {
     }
 
     /**
-     * 获取单道帖子详情
+     * 获取单道评论详情
      * @param commentId
      * @return
      */
@@ -58,7 +58,7 @@ public class CommentController {
     }
 
     /**
-     * 编辑帖子
+     * 编辑评论
      * @param commentEditDto
      * @return
      */
@@ -69,7 +69,7 @@ public class CommentController {
     }
 
     /**
-     * 删除帖子
+     * 删除评论
      * @param deleteDto
      * @return
      */

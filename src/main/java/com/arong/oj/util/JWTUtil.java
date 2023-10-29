@@ -4,9 +4,15 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 import springfox.documentation.annotations.Cacheable;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,6 +23,15 @@ public class JWTUtil {
     private static final long EXPIRE_TIME = 15 * 60 * 1000;
     // 私钥
     private static final String TOKEN_SECRET = "privateKey";
+
+    private static StringRedisTemplate stringRedisTemplate;
+
+    @Autowired
+    ApplicationContext applicationContext;
+    @PostConstruct
+    public void init() {
+        JWTUtil.stringRedisTemplate = applicationContext.getBean(StringRedisTemplate.class);
+    }
 
     public static String getToken(Long id) {
         try {
@@ -49,5 +64,15 @@ public class JWTUtil {
         } catch (Exception e){
             return 0L;
         }
+    }
+
+
+    public static Long getCurrentUser(HttpServletRequest request) {
+        Object token = request.getSession().getAttribute("token");
+        String userId = stringRedisTemplate.opsForValue().get(token);
+        if(userId == null) {
+            return 0L;
+        }
+        return Long.valueOf(userId);
     }
 }
