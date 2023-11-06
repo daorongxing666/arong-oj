@@ -9,9 +9,10 @@
             <result property="userId" column="user_id" jdbcType="BIGINT"/>
             <result property="questionId" column="question_id" jdbcType="BIGINT"/>
             <result property="language" column="language" jdbcType="INTEGER"/>
-            <result property="status" column="status" jdbcType="INTEGER"/>
+            <result property="answerStatus" column="answer_status" jdbcType="INTEGER"/>
+            <result property="judgeStatus" column="judge_status" jdbcType="INTEGER"/>
             <result property="code" column="code" jdbcType="VARCHAR"/>
-            <result property="msg" column="msg" jdbcType="VARCHAR"/>
+            <result property="judgeInfo" column="msg" jdbcType="VARCHAR"/>
             <result property="createtime" column="createTime" jdbcType="TIMESTAMP"/>
             <result property="updatetime" column="updateTime" jdbcType="TIMESTAMP"/>
             <result property="isdelete" column="isDelete" jdbcType="TINYINT"/>
@@ -19,7 +20,7 @@
 
     <sql id="Base_Column_List">
         id,user_id,question_id,
-        language,status,code,
+        language,answer_status,judge_status,code,
         msg,createTime,updateTime,
         isDelete
     </sql>

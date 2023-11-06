@@ -7,10 +7,12 @@ public class BusinessException extends RuntimeException {
     /**
      * 错误码
      */
-    private final int code;
+    private int code;
+
+    private String message;
 
     public BusinessException(int code, String message) {
-        super(message);
+        this.message = message;
         this.code = code;
     }
 
@@ -20,7 +22,7 @@ public class BusinessException extends RuntimeException {
     }
 
     public BusinessException(Code code, String message) {
-        super(message);
+        this.message = message;
         this.code = code.getCodeNum();
     }
 

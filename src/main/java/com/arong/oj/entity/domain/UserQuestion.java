@@ -33,12 +33,17 @@ public class UserQuestion implements Serializable {
     /**
      * 答题语言(后面用枚举类)
      */
-    private Integer language;
+    private String language;
 
     /**
      * 答题状态(后面用枚举类)
      */
-    private Integer status;
+    private Integer answerStatus;
+
+    /**
+     * 判题状态
+     */
+    private String judgeStatus;
 
     /**
      * 答题代码
@@ -46,9 +51,9 @@ public class UserQuestion implements Serializable {
     private String code;
 
     /**
-     * 答题信息
+     * 答题信息(时间，空间，堆栈)
      */
-    private String msg;
+    private String judgeInfo;
 
     /**
      * 创建时间
@@ -84,9 +89,10 @@ public class UserQuestion implements Serializable {
             && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
             && (this.getQuestionId() == null ? other.getQuestionId() == null : this.getQuestionId().equals(other.getQuestionId()))
             && (this.getLanguage() == null ? other.getLanguage() == null : this.getLanguage().equals(other.getLanguage()))
-            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
+            && (this.getAnswerStatus() == null ? other.getAnswerStatus() == null : this.getAnswerStatus().equals(other.getAnswerStatus()))
+            && (this.getJudgeStatus() == null ? other.getJudgeStatus() == null : this.getJudgeStatus().equals(other.getJudgeStatus()))
             && (this.getCode() == null ? other.getCode() == null : this.getCode().equals(other.getCode()))
-            && (this.getMsg() == null ? other.getMsg() == null : this.getMsg().equals(other.getMsg()))
+            && (this.getJudgeInfo() == null ? other.getJudgeInfo() == null : this.getJudgeInfo().equals(other.getJudgeInfo()))
             && (this.getCreatetime() == null ? other.getCreatetime() == null : this.getCreatetime().equals(other.getCreatetime()))
             && (this.getUpdatetime() == null ? other.getUpdatetime() == null : this.getUpdatetime().equals(other.getUpdatetime()))
             && (this.getIsdelete() == null ? other.getIsdelete() == null : this.getIsdelete().equals(other.getIsdelete()));
@@ -100,9 +106,10 @@ public class UserQuestion implements Serializable {
         result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
         result = prime * result + ((getQuestionId() == null) ? 0 : getQuestionId().hashCode());
         result = prime * result + ((getLanguage() == null) ? 0 : getLanguage().hashCode());
-        result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
+        result = prime * result + ((getAnswerStatus() == null) ? 0 : getAnswerStatus().hashCode());
+        result = prime * result + ((getJudgeStatus() == null) ? 0 : getJudgeStatus().hashCode());
         result = prime * result + ((getCode() == null) ? 0 : getCode().hashCode());
-        result = prime * result + ((getMsg() == null) ? 0 : getMsg().hashCode());
+        result = prime * result + ((getJudgeInfo() == null) ? 0 : getJudgeInfo().hashCode());
         result = prime * result + ((getCreatetime() == null) ? 0 : getCreatetime().hashCode());
         result = prime * result + ((getUpdatetime() == null) ? 0 : getUpdatetime().hashCode());
         result = prime * result + ((getIsdelete() == null) ? 0 : getIsdelete().hashCode());
@@ -119,9 +126,10 @@ public class UserQuestion implements Serializable {
         sb.append(", userId=").append(userId);
         sb.append(", questionId=").append(questionId);
         sb.append(", language=").append(language);
-        sb.append(", status=").append(status);
+        sb.append(", answerStatus=").append(answerStatus);
+        sb.append(", judgeStatus=").append(judgeStatus);
         sb.append(", code=").append(code);
-        sb.append(", msg=").append(msg);
+        sb.append(", msg=").append(judgeInfo);
         sb.append(", createtime=").append(createtime);
         sb.append(", updatetime=").append(updatetime);
         sb.append(", isdelete=").append(isdelete);

@@ -1,24 +1,35 @@
 package com.arong.oj.service.impl;
+import java.util.Date;
 
 import cn.hutool.core.bean.BeanUtil;
+import com.arong.oj.common.Code;
 import com.arong.oj.common.DeleteDto;
 import com.arong.oj.entity.domain.Question;
+import com.arong.oj.entity.domain.UserQuestion;
+import com.arong.oj.entity.enums.QuestionSummitStatusEnum;
 import com.arong.oj.entity.request.question.QuestionAddDto;
 import com.arong.oj.entity.request.question.QuestionEditDto;
 import com.arong.oj.entity.request.question.QuestionQueryDto;
-import com.arong.oj.entity.response.QuestionResponse;
+import com.arong.oj.entity.request.userQuestion.UserQuestionSummitDto;
+import com.arong.oj.entity.response.UserResponse;
 import com.arong.oj.entity.response.question.QuestionDetailResponse;
 import com.arong.oj.entity.response.question.QuestionResponse;
 import com.arong.oj.error.BusinessException;
+import com.arong.oj.judge.doJudge.service.JudgeService;
 import com.arong.oj.service.QuestionService;
+import com.arong.oj.service.UserQuestionService;
+import com.arong.oj.service.UserService;
 import com.arong.oj.util.PageUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.arong.oj.entity.domain.Question;
 import com.arong.oj.mapper.QuestionMapper;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,6 +43,16 @@ import static com.arong.oj.common.Code.SQL_ERROR;
 @Service
 public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question>
     implements QuestionService {
+
+    @Resource
+    private UserService userService;
+
+    @Resource
+    @Lazy
+    private JudgeService judgeService;
+
+    @Resource
+    UserQuestionService userQuestionService;
 
     @Override
     public Long addQuestion(QuestionAddDto questionAddDto) {
@@ -84,8 +105,21 @@ public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question>
     }
 
     @Override
-    public void execute() {
+    public void execute(UserQuestionSummitDto userQuestionSummitDto, HttpServletRequest request) {
+        // 获取用户id
+        UserResponse loginUser = userService.getLoginUser(request);
+        // 新增用户题目对象
+        UserQuestion userQuestion = new UserQuestion();
+        userQuestion.setQuestionId(userQuestionSummitDto.getQuestionId());
+        userQuestion.setLanguage(userQuestionSummitDto.getLanguage());
+        userQuestion.setCode(userQuestionSummitDto.getCode());
+        userQuestion.setUserId(loginUser.getId());
 
+        UserQuestion judgeUserQuestion = judgeService.doJudge(userQuestion);
+        boolean save = userQuestionService.save(judgeUserQuestion);
+        if(!save) {
+            throw new BusinessException(Code.FAIL, "保存用户题目信息失败");
+        }
     }
 }
 

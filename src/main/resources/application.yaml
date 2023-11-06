@@ -17,3 +17,7 @@ server:
     8080
   servlet:
     context-path: /api
+
+
+codeSandBox:
+  type: remote

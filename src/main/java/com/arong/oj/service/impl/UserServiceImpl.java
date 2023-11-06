@@ -31,6 +31,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -157,9 +158,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     }
 
     @Override
-    public UserResponse getLoginUser(Long userId) {
-        String userResponseString = stringRedisTemplate.opsForValue().get(userId.toString());
-        return JSONUtil.toBean(userResponseString, UserResponse.class);
+    public UserResponse getLoginUser(HttpServletRequest request) {
+        Object token = request.getSession().getAttribute("Authorization");
+        String s = stringRedisTemplate.opsForValue().get(token);
+        UserResponse userResponse = JSONUtil.toBean(s, UserResponse.class);
+        if (userResponse == null) {
+            throw new BusinessException(Code.UN_LOGIN_ERROR);
+        }
+        return userResponse;
     }
 }
 

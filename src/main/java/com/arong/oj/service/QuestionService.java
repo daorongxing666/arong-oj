@@ -5,12 +5,14 @@ import com.arong.oj.entity.domain.Question;
 import com.arong.oj.entity.request.question.QuestionAddDto;
 import com.arong.oj.entity.request.question.QuestionEditDto;
 import com.arong.oj.entity.request.question.QuestionQueryDto;
+import com.arong.oj.entity.request.userQuestion.UserQuestionSummitDto;
 import com.arong.oj.entity.response.question.QuestionDetailResponse;
 import com.arong.oj.entity.response.question.QuestionResponse;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.apache.ibatis.annotations.Delete;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -58,5 +60,5 @@ public interface QuestionService extends IService<Question> {
     /**
      * 做题（目前不知道怎么办，等一下再来）
      */
-    public void execute();
+    public void execute(UserQuestionSummitDto userQuestionSummitDto, HttpServletRequest request);
 }

@@ -10,6 +10,7 @@ import com.arong.oj.entity.response.UserResponse;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -63,5 +64,5 @@ public interface UserService extends IService<User> {
      * @param userId
      * @return
      */
-    public UserResponse getLoginUser(Long userId);
+    public UserResponse getLoginUser(HttpServletRequest request);
 }

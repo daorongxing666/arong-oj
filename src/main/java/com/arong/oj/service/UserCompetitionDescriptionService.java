@@ -1,7 +1,12 @@
 package com.arong.oj.service;
 
+import co.elastic.clients.elasticsearch.nodes.Http;
+import com.arong.oj.common.Page;
 import com.arong.oj.entity.domain.UserCompetitionDescription;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
 * @author centos7
@@ -13,10 +18,11 @@ public interface UserCompetitionDescriptionService extends IService<UserCompetit
     /**
      * 订阅竞赛
      */
-    public void description();
+    public void description(HttpServletRequest request, Long competitionId);
 
     /**
      * 通知参加竞赛
      */
-    public void notice();
+    public void notice(Long competitionId);
+
 }

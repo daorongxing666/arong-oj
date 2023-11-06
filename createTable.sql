@@ -211,3 +211,18 @@ create table oj_db.comment
     is_deleted        int      default 0                 not null comment '是否删除'
 )
     comment '评论表';
+
+-- 通知表
+create table oj_db.notice
+(
+    id                bigint primary key  comment '主键',
+    user_id           bigint                             not null comment '用户id',
+    notice_type       bigint   default 1                not null comment '1-系统通知，2-点赞通知，3-回复通知，4-关注通知',
+    content           varchar(256)                       not null comment '内容',
+    notice_user_id    bigint   default 0                not null comment '0-系统通知，行为用户',
+    `is_read`            boolean      default false                 not null comment '是否已读',
+    create_time       DATETIME default CURRENT_TIMESTAMP null comment '创建时间',
+    update_time       Datetime default CURRENT_TIMESTAMP null on update CURRENT_TIMESTAMP comment '更新时间',
+    is_deleted        int      default 0                 not null comment '是否删除'
+)
+    comment '通知表';
